@@ -1,3 +1,3 @@
 # OCC前端页面
 
-Vue3 + Nuxt + Pania
+Vue3 + Nuxt

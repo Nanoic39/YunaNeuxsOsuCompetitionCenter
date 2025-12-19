@@ -5,24 +5,23 @@ import { useHomeApi } from '~/composables/api/useHomeApi'
 
 definePageMeta({ layout: 'admin-layout' })
 
-const { fetchBanners, fetchRecommendedCompetitions, fetchNews, fetchQuickLinks, fetchUserStatus, fetchUserProfile } = useHomeApi()
+const { fetchBanners, fetchRecommendedCompetitions, fetchNews, fetchQuickLinks, fetchUserStatus } = useHomeApi()
+const { user, isLoggedIn } = useUser()
 
 const { data: homeData, status: dataStatus } = await useAsyncData('home-data', async () => {
-  const [banners, competitions, news, links, status, profile] = await Promise.all([
+  const [banners, competitions, news, links, status] = await Promise.all([
     fetchBanners(),
     fetchRecommendedCompetitions(),
     fetchNews(),
     fetchQuickLinks(),
-    fetchUserStatus(),
-    fetchUserProfile()
+    fetchUserStatus()
   ])
   return {
     banners: banners as any[],
     competitions: competitions as any[],
     news: news as any[],
     links: links as any[],
-    status: status as any,
-    profile: profile as any
+    status: status as any
   }
 })
 
@@ -32,8 +31,7 @@ const recommendedCompetitions = computed(() => homeData.value?.competitions || [
 const news = computed(() => homeData.value?.news || [])
 const quickLinks = computed(() => homeData.value?.links || [])
 const myStatus = computed(() => homeData.value?.status || {})
-const userProfile = computed(() => homeData.value?.profile || {})
-const isLoggedIn = computed(() => !!userProfile.value?.isLoggedIn)
+const userProfile = user
 </script>
 
 <template>
@@ -63,7 +61,7 @@ const isLoggedIn = computed(() => !!userProfile.value?.isLoggedIn)
               <Icon name="heroicons:fire" class="text-[var(--color-error)]" />
               热门赛事
             </h3>
-            <n-button text type="primary">更多赛事 <Icon name="heroicons:arrow-right" class="ml-1" /></n-button>
+            <n-button text type="primary" @click="navigateTo('/competitions')">更多赛事 <Icon name="heroicons:arrow-right" class="ml-1" /></n-button>
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -75,9 +73,7 @@ const isLoggedIn = computed(() => !!userProfile.value?.isLoggedIn)
               <div class="h-32 overflow-hidden">
                 <img :src="comp.image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div class="absolute top-2 right-2">
-                   <n-tag size="small" :type="comp.status === '进行中' ? 'success' : comp.status === '报名中' ? 'info' : 'default'">
-                     {{ comp.status }}
-                   </n-tag>
+                   <CompetitionStatusTag :status="comp.status" />
                 </div>
               </div>
               <div class="p-4">
@@ -187,8 +183,8 @@ const isLoggedIn = computed(() => !!userProfile.value?.isLoggedIn)
             Yuna Nexus 是一个专注于 osu! 社区赛事的综合管理平台。在这里，你可以轻松报名参赛、管理赛程、查看实时战况。
           </p>
           <div class="mt-4 flex gap-3">
-            <n-button size="small" type="primary" secondary>联系我们</n-button>
-            <n-button size="small" text>使用文档</n-button>
+            <n-button size="small" type="primary" secondary @click="$router.push('/about')">关于我们</n-button>
+            <n-button size="small" text>API文档</n-button>
           </div>
         </div>
       </div>

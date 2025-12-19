@@ -66,3 +66,37 @@ body {
   color: var(--text-main);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Page Transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  filter: blur(4px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.98);
+  filter: blur(4px);
+}
+
+/* Layout Transitions */
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.layout-enter-from {
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.layout-leave-to {
+  opacity: 0;
+  filter: blur(4px);
+}

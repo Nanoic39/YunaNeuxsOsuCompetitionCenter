@@ -249,3 +249,42 @@ export const MOCK_CHANGELOG = [
     ],
   },
 ];
+
+export const MOCK_TICKETS = [
+  {
+    id: "T-20250520-001",
+    type: "feature",
+    title: "建议增加黑暗模式自动切换",
+    content: "现在的黑暗模式需要手动切换，希望能跟随系统设置自动切换。",
+    status: "processing",
+    createdAt: "2025-05-20 14:30",
+    updates: [
+      { user: "System", time: "2025-05-20 14:30", content: "工单已提交" },
+      { user: "Support", time: "2025-05-20 15:00", content: "已确认需求，加入开发计划" },
+    ]
+  },
+  {
+    id: "T-20250519-003",
+    type: "bug",
+    title: "比赛详情页在移动端显示异常",
+    content: "iPhone 13 Pro 上比赛详情页的表格宽度溢出屏幕。",
+    status: "resolved",
+    createdAt: "2025-05-19 09:15",
+    updates: [
+      { user: "System", time: "2025-05-19 09:15", content: "工单已提交" },
+      { user: "Dev", time: "2025-05-19 11:20", content: "修复了 CSS 样式问题" },
+      { user: "System", time: "2025-05-19 11:30", content: "工单已解决" },
+    ]
+  },
+  {
+    id: "T-20250518-002",
+    type: "account",
+    title: "无法绑定 Discord 账号",
+    content: "点击绑定按钮后一直转圈，没有跳转。",
+    status: "pending",
+    createdAt: "2025-05-18 20:45",
+    updates: [
+      { user: "System", time: "2025-05-18 20:45", content: "工单已提交" },
+    ]
+  }
+];

@@ -70,6 +70,8 @@ function matchRouteToMenu() {
 
   if (matched) {
     activeKey.value = matched.key;
+  } else {
+    activeKey.value = null;
   }
 }
 

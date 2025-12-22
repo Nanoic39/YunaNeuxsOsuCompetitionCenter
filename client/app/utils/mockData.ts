@@ -119,3 +119,73 @@ export const MOCK_MENU_ITEMS = [
     path: '/login'
   }
 ]
+
+export const MOCK_TEAM_MEMBERS = [
+  {
+    name: "NANO1C",
+    role: "全栈开发 | UI/UX设计",
+    avatar: "https://placehold.co/150x150/6692e1/ffffff?text=nanoic",
+  },
+  {
+    name: "展展",
+    role: "项目策划",
+    avatar: "https://placehold.co/150x150/e57373/ffffff?text=Miku",
+  }
+];
+
+export const MOCK_CHANGELOG = [
+  {
+    version: 'v1.2.0',
+    date: '2025-05-20',
+    type: 'major',
+    title: '夏季赛版本更新',
+    changes: [
+      { type: 'feat', content: '新增战队系统，支持创建和加入战队' },
+      { type: 'fix', content: '修复了移动端部分页面布局错乱的问题' },
+      { type: 'perf', content: '优化了比赛列表的加载速度' }
+    ]
+  },
+  {
+    version: 'v1.1.5',
+    date: '2025-05-10',
+    type: 'minor',
+    title: '用户体验优化',
+    changes: [
+      { type: 'feat', content: '个人中心支持自定义 Banner 背景' },
+      { type: 'fix', content: '修复了登录状态偶尔失效的 Bug' },
+      { type: 'style', content: '调整了全局字体和颜色规范' }
+    ]
+  },
+  {
+    version: 'v1.1.0',
+    date: '2025-04-25',
+    type: 'minor',
+    title: '赛事管理功能增强',
+    changes: [
+      { type: 'feat', content: '赛事主办方现在可以导出报名数据' },
+      { type: 'feat', content: '新增裁判管理后台' },
+      { type: 'fix', content: '修复了报名时间显示错误的问题' }
+    ]
+  },
+  {
+    version: 'v1.0.2',
+    date: '2025-04-10',
+    type: 'patch',
+    title: '常规修复',
+    changes: [
+      { type: 'fix', content: '修复了部分翻译错误' },
+      { type: 'perf', content: '减少了首页首屏加载时间' }
+    ]
+  },
+  {
+    version: 'v1.0.0',
+    date: '2025-04-01',
+    type: 'major',
+    title: 'Yuna Nexus 正式发布',
+    changes: [
+      { type: 'feat', content: '平台正式上线，开放注册' },
+      { type: 'feat', content: '支持 Standard 和 Mania 模式比赛' },
+      { type: 'feat', content: '集成 Discord 登录' }
+    ]
+  }
+];

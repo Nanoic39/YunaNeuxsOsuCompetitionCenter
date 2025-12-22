@@ -4,6 +4,7 @@ import { MOCK_TEAM_MEMBERS, MOCK_CHANGELOG } from "~/utils/mockData";
 
 definePageMeta({
   layout: "admin-layout",
+  title: "关于我们",
 });
 
 const teamMembers = MOCK_TEAM_MEMBERS;
@@ -12,22 +13,32 @@ const changelog = MOCK_CHANGELOG;
 // Helper to get color based on change type
 const getChangeTypeColor = (type: string) => {
   switch (type) {
-    case 'feat': return 'text-[var(--color-success)]';
-    case 'fix': return 'text-[var(--color-warning)]';
-    case 'perf': return 'text-[var(--color-info)]';
-    case 'style': return 'text-pink-500';
-    default: return 'text-[var(--text-secondary)]';
+    case "feat":
+      return "text-[var(--color-success)]";
+    case "fix":
+      return "text-[var(--color-warning)]";
+    case "perf":
+      return "text-[var(--color-info)]";
+    case "style":
+      return "text-pink-500";
+    default:
+      return "text-[var(--text-secondary)]";
   }
 };
 
 // Helper to get icon based on change type
 const getChangeTypeIcon = (type: string) => {
   switch (type) {
-    case 'feat': return 'heroicons:plus-circle';
-    case 'fix': return 'heroicons:wrench-screwdriver';
-    case 'perf': return 'heroicons:bolt';
-    case 'style': return 'heroicons:paint-brush';
-    default: return 'heroicons:information-circle';
+    case "feat":
+      return "heroicons:plus-circle";
+    case "fix":
+      return "heroicons:wrench-screwdriver";
+    case "perf":
+      return "heroicons:bolt";
+    case "style":
+      return "heroicons:paint-brush";
+    default:
+      return "heroicons:information-circle";
   }
 };
 </script>
@@ -151,50 +162,66 @@ const getChangeTypeIcon = (type: string) => {
           <span class="font-bold text-xl">网站更新记录</span>
         </div>
       </template>
-      
+
       <div class="h-[400px] overflow-y-auto pr-2 custom-scrollbar">
         <div class="space-y-8 pl-2 py-2">
-          <div 
-            v-for="(release, index) in changelog" 
-            :key="release.version" 
+          <div
+            v-for="(release, index) in changelog"
+            :key="release.version"
             class="relative pl-6 border-l-2 border-[var(--border-color)] animate-fade-in-up"
             :style="{ animationDelay: `${index * 100}ms` }"
           >
             <!-- Timeline Dot -->
             <div
               class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-4 border-[var(--bg-card)] transition-colors duration-300"
-              :class="index === 0 ? 'bg-[var(--color-primary)]' : 'bg-[var(--text-tertiary)]'"
+              :class="
+                index === 0
+                  ? 'bg-[var(--color-primary)]'
+                  : 'bg-[var(--text-tertiary)]'
+              "
             ></div>
-            
+
             <!-- Version Header -->
             <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
               <div class="flex items-center gap-2">
-                <h3 class="font-bold text-lg text-[var(--text-main)]">{{ release.version }}</h3>
-                <n-tag 
-                  size="small" 
-                  :type="release.type === 'major' ? 'primary' : release.type === 'minor' ? 'info' : 'default'" 
-                  round 
+                <h3 class="font-bold text-lg text-[var(--text-main)]">
+                  {{ release.version }}
+                </h3>
+                <n-tag
+                  size="small"
+                  :type="
+                    release.type === 'major'
+                      ? 'primary'
+                      : release.type === 'minor'
+                        ? 'info'
+                        : 'default'
+                  "
+                  round
                   :bordered="false"
                   class="font-mono"
                 >
                   {{ release.type.toUpperCase() }}
                 </n-tag>
               </div>
-              <span class="text-sm text-[var(--text-secondary)]">{{ release.date }}</span>
+              <span class="text-sm text-[var(--text-secondary)]">{{
+                release.date
+              }}</span>
             </div>
-            
-            <div class="font-medium text-[var(--text-main)] mb-2">{{ release.title }}</div>
-            
+
+            <div class="font-medium text-[var(--text-main)] mb-2">
+              {{ release.title }}
+            </div>
+
             <!-- Changes List -->
             <ul class="space-y-2">
-              <li 
-                v-for="(change, cIndex) in release.changes" 
-                :key="cIndex" 
+              <li
+                v-for="(change, cIndex) in release.changes"
+                :key="cIndex"
                 class="flex items-start gap-2 text-sm text-[var(--text-secondary)]"
               >
-                <Icon 
-                  :name="getChangeTypeIcon(change.type)" 
-                  class="mt-0.5 text-base shrink-0" 
+                <Icon
+                  :name="getChangeTypeIcon(change.type)"
+                  class="mt-0.5 text-base shrink-0"
                   :class="getChangeTypeColor(change.type)"
                 />
                 <span>{{ change.content }}</span>
@@ -205,55 +232,61 @@ const getChangeTypeIcon = (type: string) => {
       </div>
     </n-card>
 
-  <!-- Team Section -->
-  <div class="bg-[var(--bg-card)] rounded-xl p-8 shadow-sm">
-    <h2 class="text-2xl font-bold text-[var(--text-main)] mb-8 text-center">
-      核心团队
-    </h2>
-    <div
-      class="flex flex-wrap justify-center gap-8"
-    >
-      <div
-        v-for="member in teamMembers"
-        :key="member.name"
-        class="text-center group w-full max-w-[200px]"
-      >
-        <n-avatar
-          round
-          :size="80"
-          :src="member.avatar"
-          class="mb-4 group-hover:scale-110 transition-transform duration-300 ring-4 ring-[var(--bg-layout-body)] shadow-lg"
-        />
-        <h3 class="font-bold text-[var(--text-main)] text-lg">
-          {{ member.name }}
-        </h3>
-        <p class="text-[var(--text-secondary)] text-sm">{{ member.role }}</p>
+    <!-- Team Section -->
+    <div class="bg-[var(--bg-card)] rounded-xl p-8 shadow-sm">
+      <h2 class="text-2xl font-bold text-[var(--text-main)] mb-8 text-center">
+        核心团队
+      </h2>
+      <div class="flex flex-wrap justify-center gap-8">
+        <div
+          v-for="member in teamMembers"
+          :key="member.name"
+          class="text-center group w-full max-w-[200px]"
+        >
+          <n-avatar
+            round
+            :size="80"
+            :src="member.avatar"
+            class="mb-4 group-hover:scale-110 transition-transform duration-300 ring-4 ring-[var(--bg-layout-body)] shadow-lg"
+          />
+          <h3 class="font-bold text-[var(--text-main)] text-lg">
+            {{ member.name }}
+          </h3>
+          <p class="text-[var(--text-secondary)] text-sm">{{ member.role }}</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Contact Section -->
-  <div
-    class="bg-[var(--bg-layout-sider)] border border-[var(--border-color)] rounded-xl p-8 text-center"
-  >
-    <h2 class="text-2xl font-bold text-[var(--text-main)] mb-4">联系我们</h2>
-    <p class="text-[var(--text-secondary)] mb-6">
-      如果您有任何建议、合作意向或遇到问题，欢迎随时联系我们。
-    </p>
-    <div class="flex justify-center gap-4">
-      <n-button
-        type="primary"
-        size="large"
-        class="shadow-lg shadow-blue-500/20"
-      >
-        <template #icon><Icon name="heroicons:envelope" /></template>
-        发送邮件
-      </n-button>
-      <n-button secondary type="info" size="large">
-        <template #icon><Icon name="simple-icons:discord" /></template>
-        加入 Discord
-      </n-button>
+    <!-- Contact Section -->
+    <div
+      class="bg-[var(--bg-layout-sider)] border border-[var(--border-color)] rounded-xl p-8 text-center"
+    >
+      <h2 class="text-2xl font-bold text-[var(--text-main)] mb-4">联系我们</h2>
+      <p class="text-[var(--text-secondary)] mb-6">
+        如果您有任何建议、合作意向或遇到问题，欢迎随时联系我们。
+      </p>
+      <div class="flex justify-center gap-4">
+        <n-button
+          type="primary"
+          size="large"
+          class="shadow-lg shadow-blue-500/20"
+          @click="
+            $router.push({
+              path: '/feedback',
+              query: { type: 'other', title: '填写(个人/企业)合作联系申请' },
+            })
+          "
+        >
+          <template #icon
+            ><Icon name="heroicons:chat-bubble-left-ellipsis"
+          /></template>
+          提交反馈
+        </n-button>
+        <n-button secondary type="info" size="large">
+          <template #icon><Icon name="heroicons:user-group" /></template>
+          加入群组
+        </n-button>
+      </div>
     </div>
-  </div>
   </div>
 </template>

@@ -191,6 +191,44 @@ const profileOptions = computed(() => {
     },
   ];
 });
+
+const breadcrumbs = computed(() => {
+  const items = [{ label: "首页", path: "/", clickable: true }];
+
+  if (route.path === "/") return items;
+
+  // 1. Try to find in menu options
+  const currentMenu = menuOptions.value.find(
+    (item: any) => item.key === activeKey.value
+  );
+
+  if (currentMenu) {
+    items.push({
+      label: currentMenu.label,
+      path: currentMenu.path,
+      clickable: false,
+    });
+  } else {
+    // 2. Try route meta title or fallback map
+    const title = (route.meta.title as string) || getPageTitle(route.path);
+    items.push({
+      label: title,
+      path: route.path,
+      clickable: false,
+    });
+  }
+
+  return items;
+});
+
+function getPageTitle(path: string): string {
+  if (path.startsWith("/feedback")) return "意见反馈";
+  if (path.startsWith("/profile")) return "个人中心";
+  if (path.startsWith("/about")) return "关于我们";
+  if (path.startsWith("/login")) return "登录";
+  if (path.startsWith("/register")) return "注册";
+  return "当前页面";
+}
 </script>
 
 <template>
@@ -351,8 +389,14 @@ const profileOptions = computed(() => {
 
             <!-- 面包屑或其他导航辅助 -->
             <n-breadcrumb class="hidden md:block">
-              <n-breadcrumb-item>首页</n-breadcrumb-item>
-              <n-breadcrumb-item>工作台</n-breadcrumb-item>
+              <n-breadcrumb-item
+                v-for="item in breadcrumbs"
+                :key="item.path"
+                @click="item.clickable && $router.push(item.path)"
+                :class="{ 'cursor-pointer': item.clickable }"
+              >
+                {{ item.label }}
+              </n-breadcrumb-item>
             </n-breadcrumb>
 
             <!-- 移动端 Logo -->
@@ -367,6 +411,17 @@ const profileOptions = computed(() => {
           </div>
 
           <div class="flex items-center gap-2 md:gap-4">
+            <n-tooltip trigger="hover">
+              <template #trigger>
+                <n-button circle quaternary @click="router.push('/feedback')">
+                  <template #icon>
+                    <Icon name="heroicons:chat-bubble-left-ellipsis" />
+                  </template>
+                </n-button>
+              </template>
+              意见反馈
+            </n-tooltip>
+
             <n-button circle quaternary @click="handleThemeToggle">
               <template #icon>
                 <Icon :name="isDark ? 'heroicons:moon' : 'heroicons:sun'" />

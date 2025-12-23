@@ -1,21 +1,13 @@
 <script setup lang="ts">
-const { theme, themeOverrides } = useTheme()
+// Providers are now in AppProviders component
 </script>
 
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
-    <n-loading-bar-provider>
-      <n-message-provider>
-        <n-dialog-provider>
-          <n-notification-provider>
-            <NuxtLayout>
-              <NuxtPage />
-            </NuxtLayout>
-          </n-notification-provider>
-        </n-dialog-provider>
-      </n-message-provider>
-    </n-loading-bar-provider>
-  </n-config-provider>
+  <AppProviders>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </AppProviders>
 </template>
 
 <style>

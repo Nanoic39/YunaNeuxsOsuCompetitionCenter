@@ -54,9 +54,11 @@ const getChangeTypeIcon = (type: string) => {
       >
         <Icon name="simple-icons:osu" class="text-white text-4xl" />
       </div>
-      <h1 class="text-4xl font-bold mb-4">关于 Yuna Nexus</h1>
+      <h1 class="text-4xl font-bold mb-4">
+        关于 Yuna Nexus Osu Competition Center
+      </h1>
       <p class="text-lg opacity-90 max-w-2xl mx-auto px-4">
-        致力于为 osu! 社区打造最专业、最便捷的赛事管理平台
+        致力于为 osu! 社区打造专业且便捷的赛事管理平台
       </p>
     </div>
 
@@ -74,9 +76,9 @@ const getChangeTypeIcon = (type: string) => {
           </div>
         </template>
         <p class="text-[var(--text-secondary)] leading-relaxed text-base">
-          Yuna Nexus 旨在解决 osu!
-          社区赛事组织过程中的痛点。我们提供一站式的赛事管理解决方案，从报名、分组、赛程安排到成绩统计，全方位提升赛事组织效率和参赛体验。我们希望连接每一位热爱
-          osu! 的玩家，让竞技更有趣。
+          Yuna Nexus OsuCompetitionCenter 旨在解决
+          osu!社区赛事组织过程中的痛点。我们提供一站式的赛事管理解决方案，从报名、分组、赛程安排到成绩统计，全方位提升赛事组织效率和参赛体验。我们希望连接每一位热爱osu!
+          的玩家，让竞技更有趣。
         </p>
       </n-card>
 
@@ -92,10 +94,10 @@ const getChangeTypeIcon = (type: string) => {
           </div>
         </template>
         <p class="text-[var(--text-secondary)] leading-relaxed text-base">
-          我们将持续迭代平台功能，引入更多自动化工具和数据分析能力。未来，Yuna
-          Nexus
-          不仅仅是一个工具，更将成为汇聚顶尖选手、优质赛事和社区文化的中心枢纽，推动
-          osu! 电竞生态的健康发展。
+          我们将持续迭代平台功能，引入更多自动化工具和数据分析能力。希望未来Yuna
+          Nexus Osu Competition Center
+          不仅仅是一个工具，更能成为汇聚顶尖选手、优质赛事和社区文化的中心枢纽，推动
+          osu! 第三方社区的健康发展。
         </p>
       </n-card>
     </div>
@@ -135,9 +137,7 @@ const getChangeTypeIcon = (type: string) => {
             name="heroicons:check-circle"
             class="text-[var(--color-success)] mt-1"
           />
-          <span class="text-[var(--text-secondary)]"
-            >多模式支持 (Standard, Mania, Taiko, Catch)</span
-          >
+          <span class="text-[var(--text-secondary)]">多模式适配</span>
         </li>
         <li class="flex items-start gap-2">
           <Icon
